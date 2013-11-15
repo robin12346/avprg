@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vstgui-ui-description version="1">
+	<template class="CViewContainer"
+            background-color="~ GreyCColor"  
+            mouse-enabled="true" 
+            name="view" 
+            origin="0, 0" size="320, 300" 
+  >
+		<view class="CSlider" 
+          control-tag="Gain" 
+          origin="60, 80" size="160, 30"
+          draw-back="true" draw-back-color="~ BlackCColor" 
+          draw-value="true" draw-value-color="~ WhiteCColor"
+    />
+		<view class="CSlider" 
+          control-tag="Balance" 
+          origin="60, 150" size="160, 30"
+          default-value="0.5" 
+          draw-back="true" draw-back-color="~ BlackCColor" 
+          draw-value="true" draw-value-color="~ WhiteCColor"  
+    />
+	</template>
+	<control-tags>
+		<control-tag name="Balance" tag="1"/>
+		<control-tag name="Gain" tag="0"/>
+	</control-tags>
+</vstgui-ui-description>
