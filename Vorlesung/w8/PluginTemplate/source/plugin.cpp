@@ -9,7 +9,13 @@ namespace Vst {
 // member function of PluginController!
 // define parameter definitions here...
 void PluginController::setupParameters(){
-	parameters.addParameter(new RangeParameter(STR16("Gain"), kGainId, STR16("%"), 0, 100));
+	parameters.addParameter(new RangeParameter(STR16("Gain"), kGainId, STR16("%"), 0, 100, 100));
+
+	// fix for RangeParameter (default value is not yet set)
+	for(int i = 0; i < parameters.getParameterCount(); i++){
+		Parameter* p = parameters.getParameterByIndex(i);
+		p->setNormalized(p->getInfo().defaultNormalizedValue);
+	}
 }
 
 

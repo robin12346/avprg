@@ -5,12 +5,22 @@
 namespace Steinberg {
 namespace Vst {
 
+
+const float GAIN_DEFAULT_DB = 0;
+const float GAIN_MIN_DB = -100;
+const float GAIN_MAX_DB = 6;
 //-----------------------------------------------------------------------------
 // member function of PluginController!
 // define parameter definitions here...
 void PluginController::setupParameters(){
-	parameters.addParameter(new RangeParameter(STR16("Gain"), kGainId, STR16("dB"), -100, 6, 0));
+	parameters.addParameter(new RangeParameter(STR16("Gain"), kGainId, STR16("dB"), GAIN_MIN_DB, GAIN_MAX_DB, GAIN_DEFAULT_DB));
 	parameters.addParameter(new RangeParameter(STR16("Balance"), kBalanceId, STR16("%"), -100, 100, 0));
+
+	// fix for RangeParameter (default value is not yet set)
+	for(int i = 0; i < parameters.getParameterCount(); i++){
+		Parameter* p = parameters.getParameterByIndex(i);
+		p->setNormalized(p->getInfo().defaultNormalizedValue);
+	}
 }
 
 
